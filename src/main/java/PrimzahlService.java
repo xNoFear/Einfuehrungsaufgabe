@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 public class PrimzahlService {
 
 
-    {
+
         static final String webContextPath = "/primzahl";
 
         @GET
@@ -26,7 +26,7 @@ public class PrimzahlService {
         {
             return "<html><title>HelloWorld</title><body><h2>Html: Hallo " + name + "</h2></body></html>";
         }
-    }
-
-
 }
+
+
+
