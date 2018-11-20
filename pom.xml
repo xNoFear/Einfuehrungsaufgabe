@@ -7,6 +7,11 @@
     <groupId>de.htwsaar.verteilesysteme.einführungsaufgabe</groupId>
     <artifactId>Einführungsaufgabe</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+<dependencies>
+    <dependency>
+        <groupId>org.glassfish.jersey.core</groupId>
+        <artifactId>jersey-server</artifactId>
+        <version>2.13</version></dependency>
+</dependencies>
 
 </project>
