@@ -31,3 +31,4 @@ public class PrimzahlTestServer
         Thread.currentThread().join();
     }
 }
+
