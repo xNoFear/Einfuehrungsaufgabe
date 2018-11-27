@@ -6,20 +6,16 @@ import javax.ws.rs.core.MediaType;
 
 
 @Path (PrimzahlService.webContextPath)
-
-
 public class PrimzahlService {
-
 
 
         static final String webContextPath = "/primzahl";
 
-        @GET
-        @Produces( MediaType.TEXT_PLAIN )
-                public String halloPlainText( @QueryParam("name") String name )
-        {
-            return "Plain-Text: Hallo " + name;
+        @GET @Produces(MediaType.TEXT_PLAIN)
+        public String halloPlainText(@QueryParam("name") String name) {
+                return "Plain-Text: Hallo " + name;
         }
+
 
 //        @GET @Produces( MediaType.TEXT_HTML )
 //        public String halloHtml( @QueryParam("name") String name )

@@ -15,7 +15,7 @@ public class PrimzahlTestServer
         String baseUrl = ( args.length > 0 ) ? args[0] : "http://localhost:4434";
 
         final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(
-                URI.create( baseUrl ), new ResourceConfig(Primzahl.class));
+                URI.create( baseUrl ), new ResourceConfig(PrimzahlService.class));
         Runtime.getRuntime().addShutdownHook( new Thread( new Runnable() {
             @Override
             public void run() {
