@@ -9,11 +9,21 @@ import javax.ws.rs.core.MediaType;
 public class PrimzahlService {
 
 
+
         static final String webContextPath = "/primzahl";
 
         @GET @Produces(MediaType.TEXT_PLAIN)
-        public String halloPlainText(@QueryParam("name") String name) {
-                return "Plain-Text: Hallo " + name;
+        public String halloPlainText(@QueryParam("parameter") String parameterN) {
+
+            if(CacheService.containsN(parameterN)){
+                return "From Cache " +  CacheService.getPrimzahlenAsString(parameterN);
+            }else {
+
+                String result = Primzahl.getPrimzahlenAsString(Integer.parseInt(parameterN));
+                CacheService.setPrimzahlenAsString(parameterN, result);
+                return result;
+            }
+
         }
 
 
@@ -22,6 +32,8 @@ public class PrimzahlService {
 //        {
 //            return "<html><title>HelloWorld</title><body><h2>Html: Hallo " + name + "</h2></body></html>";
 //        }
+
+
 }
 
 

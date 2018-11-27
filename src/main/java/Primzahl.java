@@ -71,4 +71,10 @@ public class Primzahl {
         Primzahl.primzahlInListe(10);
     }
 
+    public static String getPrimzahlenAsString(int n){
+
+
+       return wrapIntoString(primzahlInListe(n));
+    }
+
 }
