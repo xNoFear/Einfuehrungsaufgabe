@@ -1,38 +1,49 @@
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 
 @Path (PrimzahlService.webContextPath)
 public class PrimzahlService {
 
 
+    static final String webContextPath = "/primzahl";
 
-        static final String webContextPath = "/primzahl";
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response halloPlainText(@QueryParam("parameter") String parameterN) {
 
-        @GET @Produces(MediaType.TEXT_PLAIN)
-        public String halloPlainText(@QueryParam("parameter") String parameterN) {
 
-            if(CacheService.containsN(parameterN)){
-                return "From Cache " +  CacheService.getPrimzahlenAsString(parameterN);
-            }else {
+        if (CacheService.containsN(parameterN)) {
+            String resultFromCache = CacheService.getPrimzahlenAsString(parameterN);
 
-                String result = Primzahl.getPrimzahlenAsString(Integer.parseInt(parameterN));
-                CacheService.setPrimzahlenAsString(parameterN, result);
-                return result;
-            }
+            //Build JSON Response
+            JSONArray result = new JSONArray();
+            result.put("Result");
+            JSONObject jsonObject = new JSONObject().put("String", resultFromCache);
+            result.put(jsonObject);
 
+            return Response.status(200).entity(result.toString()).build();
+        } else {
+
+            String resultAsString = Primzahl.getPrimzahlenAsString(Integer.parseInt(parameterN));
+            CacheService.setPrimzahlenAsString(parameterN, resultAsString);
+
+            //Build JSON Response
+            JSONArray result = new JSONArray();
+            result.put("Result");
+            JSONObject jsonObject = new JSONObject().put("String", resultAsString);
+            result.put(jsonObject);
+
+            return Response.status(200).entity(result.toString()).build();
         }
-
-
-//        @GET @Produces( MediaType.TEXT_HTML )
-//        public String halloHtml( @QueryParam("name") String name )
-//        {
-//            return "<html><title>HelloWorld</title><body><h2>Html: Hallo " + name + "</h2></body></html>";
-//        }
-
+    }
 
 }
 
