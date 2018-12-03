@@ -34,7 +34,6 @@ public class Primzahl {
             }
             i++;
         }
-        System.out.println(liste);
         return liste;
     }
     public static String wrapIntoString(ArrayList<Integer> liste)
@@ -68,13 +67,19 @@ public class Primzahl {
 
     public static void main (String[] args)
     {
-        Primzahl.primzahlInListe(10);
+
+      //  Primzahl.primzahlInListe(1);
+       // Primzahl.getPrimzahlenAsArray(1);
+        //Primzahl.getPrimzahlenAsString(1);
     }
 
     public static String getPrimzahlenAsString(int n){
 
-
-       return wrapIntoString(primzahlInListe(n));
+        return wrapIntoString(primzahlInListe(n));
+    }
+    public static int[] getPrimzahlenAsArray(int n)
+    {
+        return wrapIntoArray(primzahlInListe(n));
     }
 
 }
