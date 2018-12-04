@@ -63,7 +63,7 @@ public class Primzahl {
         }
         return intArray;
     }
-    
+
 
     public static String getPrimzahlenAsString(int n){
 
