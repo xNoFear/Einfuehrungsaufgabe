@@ -17,7 +17,7 @@ public class PrimzahlService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response halloPlainText(@QueryParam("parameter") String parameterN) {
+    public Response halloPlainText(@QueryParam("parameter") String parameterN, @QueryParam("datenstruktur") String datenstruktur) {
 
 
         if (CacheService.containsN(parameterN)) {
