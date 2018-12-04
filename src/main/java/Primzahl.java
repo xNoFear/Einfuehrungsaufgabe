@@ -49,7 +49,7 @@ public class Primzahl {
                 rueckgabe += liste.get(i);
             }
         }
-        System.out.println(rueckgabe);
+
         return rueckgabe;
     }
 
@@ -60,18 +60,10 @@ public class Primzahl {
         for(int i = 0; i < liste.size(); i++)
         {
             intArray[i] += liste.get(i);
-            System.out.println(intArray[i]);
         }
         return intArray;
     }
-
-    public static void main (String[] args)
-    {
-
-      //  Primzahl.primzahlInListe(1);
-       // Primzahl.getPrimzahlenAsArray(1);
-        //Primzahl.getPrimzahlenAsString(1);
-    }
+    
 
     public static String getPrimzahlenAsString(int n){
 

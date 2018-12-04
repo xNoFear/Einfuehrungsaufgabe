@@ -17,9 +17,8 @@ public class PrimzahlService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response halloPlainText(@QueryParam("parameter") int parameterN , @QueryParam("returnForm") int returnForm) {
-        System.out.println("Parameter: " + parameterN + " " + "ReturnForm: " + returnForm);
-
+    public Response getPrims(@QueryParam("parameter") int parameterN , @QueryParam("returnForm") int returnForm) {
+        System.out.println("Request" +"Count prims: " + parameterN + " " + "ReturnForm: " + returnForm);
 
 
         switch(returnForm){ //Integer.getInteger(returnForm)
@@ -43,63 +42,73 @@ public class PrimzahlService {
 
 
     private Response resultAsString(int numberOfPrims) {
-        if (CacheService.containsN(numberOfPrims)) {
-            String resultFromCache = CacheService.getPrimzahlenAsString(numberOfPrims);
+        String resultAsString = getPrimAsString(numberOfPrims);
+        JSONArray result = new JSONArray();
+        result.put("Result");
+        JSONObject jsonObject = new JSONObject().put("String", resultAsString);
+        result.put(jsonObject);
 
-            //Build JSON Response
-            JSONArray result = new JSONArray();
-            result.put("Result");
-            JSONObject jsonObject = new JSONObject().put("String", resultFromCache);
-            result.put(jsonObject);
+        return Response.status(200).entity(result.toString()).build();
 
-            return Response.status(200).entity(result.toString()).build();
-        } else {
-
-            String resultAsString = Primzahl.getPrimzahlenAsString(numberOfPrims);
-            CacheService.setPrimzahlenAsString(numberOfPrims, resultAsString);
-
-            //Build JSON Response
-            JSONArray result = new JSONArray();
-            result.put("Result");
-            JSONObject jsonObject = new JSONObject().put("String", resultAsString);
-            result.put(jsonObject);
-
-            return Response.status(200).entity(result.toString()).build();
-
-        }
     }
 
 
 
     private Response resultAsIntArray(int numberOfPrims){
-        int[] primsInIntArray;
-        if (false) {
-            //String resultFromCache = CacheService.getPrimzahlenAsString(numberOfPrims);
+        int [] primsInIntArray = getPrimAsIntArray(numberOfPrims);
+        JSONArray result = new JSONArray();
+        result.put("Result");
+        JSONObject jsonObject = new JSONObject().put("Integer Array", primsInIntArray);
+        result.put(jsonObject);
 
-        } else {
-
-            primsInIntArray = Primzahl.getPrimzahlenAsArray(numberOfPrims);
-            CacheService.setPrimzahlenAsIntArray(numberOfPrims, primsInIntArray);
-
-            //Build JSON Response
-            JSONArray result = new JSONArray();
-            result.put("Result");
-            JSONObject jsonObject = new JSONObject().put("IntArray", primsInIntArray);
-            result.put(jsonObject);
-
-            return Response.status(200).entity(result.toString()).build();
-
-        }
-
-        return null;
+        return Response.status(200).entity(result.toString()).build();
     }
 
     private Response resultAsDatastructure(int numberOfPrims){
+        String resultAsString = getPrimAsString(numberOfPrims);
+        int[] resultAsArray = getPrimAsIntArray(numberOfPrims);
 
 
-        return null;
+        JSONArray result = new JSONArray();
+        result.put("Result");
+
+        JSONObject jsonString = new JSONObject().put("String", resultAsString);
+        result.put(jsonString);
+
+        JSONObject jsonIntArray = new JSONObject().put("IntArray", resultAsArray);
+        result.put(jsonIntArray);
+
+
+        return Response.status(200).entity(result.toString()).build();
     }
 
+
+    private String getPrimAsString(int numberOfPrims) {
+        if (CacheService.isInCacheString(numberOfPrims)) {
+            return CacheService.getPrimzahlenAsString(numberOfPrims);
+
+        } else {
+
+            String resultAsString = Primzahl.getPrimzahlenAsString(numberOfPrims);
+            CacheService.setPrimzahlenAsString(numberOfPrims, resultAsString);
+
+            return resultAsString;
+        }
+    }
+
+    private int[] getPrimAsIntArray(int numberOfPrims){
+        if (CacheService.isInCacheIntArray(numberOfPrims)) {
+            return CacheService.getPrimsAsIntArray(numberOfPrims);
+
+        } else {
+
+            int [] primsInIntArray = Primzahl.getPrimzahlenAsArray(numberOfPrims);
+            CacheService.setPrimzahlenAsIntArray(numberOfPrims, primsInIntArray);
+
+            return primsInIntArray;
+
+        }
+    }
 }
 
 
