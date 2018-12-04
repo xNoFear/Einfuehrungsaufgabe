@@ -2,12 +2,12 @@ import java.util.HashMap;
 
 public class CacheService {
 
-    private static HashMap<String ,String> primzahlenAsString = new HashMap<String, String>();
-    private static HashMap<Integer[] ,String> primzahlenAsIntArray = new HashMap<Integer[], String>();
-    private static HashMap<Integer[] ,String> primzahlenAsDatastructure = new HashMap<Integer[], String>();
+    private static HashMap<Integer ,String> primzahlenAsString = new HashMap<Integer, String>();
+    private static HashMap<Integer, int[]> primzahlenAsIntArray = new HashMap<Integer, int[]>();
+    private static HashMap<Integer ,String> primzahlenAsDatastructure = new HashMap<Integer, String>();
 
 
-    public static boolean containsN(String n){
+    public static boolean containsN(int n){
         if(primzahlenAsString.containsKey(n)){
             return true;
         }else {
@@ -15,11 +15,17 @@ public class CacheService {
         }
     }
 
-    public static String getPrimzahlenAsString(String n){
+    public static String getPrimzahlenAsString(int n){
         return primzahlenAsString.get(n);
     }
 
-    public static void setPrimzahlenAsString( String n, String primzahlen){
+    public static void setPrimzahlenAsString( int n, String primzahlen){
         primzahlenAsString.put(n,primzahlen);
     }
+
+    public static void setPrimzahlenAsIntArray(int n, int[] primsInInt){
+        primzahlenAsIntArray.put(n,primsInInt);
+    }
+
+
 }
