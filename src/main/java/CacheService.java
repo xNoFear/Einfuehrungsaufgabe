@@ -43,13 +43,13 @@ public class CacheService {
 
     //Schreibt den String in die HashMap
     public static void setPrimzahlenAsString( int n, String primzahlen){
-        System.out.println(n + " is add to cache");
+        System.out.println(n + " is added to cache");
         primzahlenAsString.put(n,primzahlen);
     }
 
     //Schreibt das int Array in die HashMap
     public static void setPrimzahlenAsIntArray(int n, int[] primsInInt){
-        System.out.println(n + " is add to cache");
+        System.out.println(n + " is added to cache");
         primzahlenAsIntArray.put(n,primsInInt);
     }
 
