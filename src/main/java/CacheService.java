@@ -35,12 +35,12 @@ public class CacheService {
 
 
     public static void setPrimzahlenAsString( int n, String primzahlen){
-        System.out.println(n + " is add to cache");
+        System.out.println(n + " is added to cache");
         primzahlenAsString.put(n,primzahlen);
     }
 
     public static void setPrimzahlenAsIntArray(int n, int[] primsInInt){
-        System.out.println(n + " is add to cache");
+        System.out.println(n + " is added to cache");
         primzahlenAsIntArray.put(n,primsInInt);
     }
 
