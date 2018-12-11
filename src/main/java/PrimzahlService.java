@@ -34,7 +34,11 @@ public class PrimzahlService {
 
 
             default:
-                return Response.status(404).build();
+                JSONArray result = new JSONArray();
+                result.put("Result");
+                JSONObject jsonObject = new JSONObject().put("Message", "Invalid Parameter");
+                result.put(jsonObject);
+                return Response.status(404).entity(result.toString()).build();
 
         }
     }
